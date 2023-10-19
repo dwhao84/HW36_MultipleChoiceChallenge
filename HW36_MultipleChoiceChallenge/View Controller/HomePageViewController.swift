@@ -6,42 +6,81 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 class HomePageViewController: UIViewController {
 
-    let anwserBtnOne    = UIButton()
-    let anwserBtnTwo    = UIButton()
-    let anwserBtnThree  = UIButton()
-    let anwserBtnFour   = UIButton()
+    let appleImageView = UIImageView()
+    let titleLabel = UILabel()
+    let enterNameTextField = UITextField()
+    let arrowButton = UIButton()
 
-    let questionImageView = UIImageView()
+    var nameText: String?
 
-    let questionTitleLabel       = UILabel() // Ex: How many sexy girl in Taiwan?
-    let questionStatusTitleLabel = UILabel() // Which question are we on. Ex: question number 10.
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         updateUI()
+    }
 
-        view.backgroundColor = UIColor.red
+
+    @objc func showKeyboard () {
+        enterNameTextField.becomeFirstResponder()
+    }
+
+    @objc func arrowButtonTapped () {
+        let multipleChoiceVC = MultipleChoiceViewController ()
+
+        present(multipleChoiceVC, animated: true)
+        print("arrowButtonTapped")
     }
     
     func updateUI () {
 
-        // anwserBtnOne
-        anwserBtnOne.layer.cornerRadius = 100
-        anwserBtnOne.tintColor = UIColor.systemGreen
-        anwserBtnOne.configuration?.buttonSize = .large
-        anwserBtnOne.setTitle("", for: .normal)
-        anwserBtnOne.isUserInteractionEnabled = true
+        self.view.backgroundColor = UIColor.black
 
-        // anwserBtnOne
+        // Set up titleLabel for Home Page.
+        titleLabel.frame = CGRect(x: 54, y: 423, width: 320, height: 80)
+        titleLabel.font = UIFont.systemFont(ofSize: 28)
+        titleLabel.textColor = UIColor.white
+        titleLabel.text = "Welcome to Apple Multiple Choice "
+        titleLabel.numberOfLines = 2
+        view.addSubview(titleLabel)
+
+        // Show imageView for WWDC gif
+        let animatedImage = UIImage.animatedImageNamed("WWDC23_Apple_", duration: 4)
+        appleImageView.frame = CGRect(x: 54, y: 68, width: 320, height: 320)
+        appleImageView.image = animatedImage
+        appleImageView.contentMode = .scaleToFill
+        view.addSubview(appleImageView)
+
+        enterNameTextField.frame = CGRect(x: 54, y: 530, width: 320, height: 50)
+        enterNameTextField.placeholder = "Enter your name"
+        enterNameTextField.borderStyle = .roundedRect
+        enterNameTextField.textColor = UIColor.lightGray
+        enterNameTextField.backgroundColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 1)
+        enterNameTextField.layer.cornerRadius = 10
+        enterNameTextField.clipsToBounds = true
+        enterNameTextField.becomeFirstResponder()
+        view.addSubview(enterNameTextField)
+
+        arrowButton.setImage(UIImage(systemName: "arrow.right.circle.fill"), for: .normal)
+        
+
     }
 
-    func randomShowQuestion () {
-        let randomNumber = Int.random(in: 0...3)
 
+}
+
+extension HomePageViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("textFieldShouldReturn")
+        return true
     }
+
+
 
 }
