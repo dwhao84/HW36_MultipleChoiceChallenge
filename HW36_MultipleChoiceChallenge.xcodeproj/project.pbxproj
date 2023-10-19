@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		D3F9ED592AE1775900323495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED582AE1775900323495 /* AppDelegate.swift */; };
 		D3F9ED5B2AE1775900323495 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED5A2AE1775900323495 /* SceneDelegate.swift */; };
-		D3F9ED5D2AE1775900323495 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED5C2AE1775900323495 /* ViewController.swift */; };
 		D3F9ED602AE1775900323495 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3F9ED5E2AE1775900323495 /* Main.storyboard */; };
 		D3F9ED622AE1775B00323495 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F9ED612AE1775B00323495 /* Assets.xcassets */; };
 		D3F9ED652AE1775B00323495 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3F9ED632AE1775B00323495 /* LaunchScreen.storyboard */; };
 		D3F9ED702AE1775B00323495 /* HW36_MultipleChoiceChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED6F2AE1775B00323495 /* HW36_MultipleChoiceChallengeTests.swift */; };
 		D3F9ED7A2AE1775B00323495 /* HW36_MultipleChoiceChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED792AE1775B00323495 /* HW36_MultipleChoiceChallengeUITests.swift */; };
 		D3F9ED7C2AE1775B00323495 /* HW36_MultipleChoiceChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED7B2AE1775B00323495 /* HW36_MultipleChoiceChallengeUITestsLaunchTests.swift */; };
+		D3F9ED892AE177BA00323495 /* MultipleChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED882AE177BA00323495 /* MultipleChoiceViewController.swift */; };
+		D3F9ED8B2AE177CE00323495 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED8A2AE177CE00323495 /* HomePageViewController.swift */; };
+		D3F9ED8D2AE177DD00323495 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED8C2AE177DD00323495 /* Data.swift */; };
+		D3F9ED8F2AE177EE00323495 /* ScoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED8E2AE177EE00323495 /* ScoreState.swift */; };
+		D3F9ED912AE1780600323495 /* Question+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED902AE1780600323495 /* Question+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +43,6 @@
 		D3F9ED552AE1775900323495 /* HW36_MultipleChoiceChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW36_MultipleChoiceChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F9ED582AE1775900323495 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3F9ED5A2AE1775900323495 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D3F9ED5C2AE1775900323495 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D3F9ED5F2AE1775900323495 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3F9ED612AE1775B00323495 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3F9ED642AE1775B00323495 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +52,11 @@
 		D3F9ED752AE1775B00323495 /* HW36_MultipleChoiceChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HW36_MultipleChoiceChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F9ED792AE1775B00323495 /* HW36_MultipleChoiceChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HW36_MultipleChoiceChallengeUITests.swift; sourceTree = "<group>"; };
 		D3F9ED7B2AE1775B00323495 /* HW36_MultipleChoiceChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HW36_MultipleChoiceChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D3F9ED882AE177BA00323495 /* MultipleChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceViewController.swift; sourceTree = "<group>"; };
+		D3F9ED8A2AE177CE00323495 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		D3F9ED8C2AE177DD00323495 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		D3F9ED8E2AE177EE00323495 /* ScoreState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreState.swift; sourceTree = "<group>"; };
+		D3F9ED902AE1780600323495 /* Question+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Question+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +107,11 @@
 		D3F9ED572AE1775900323495 /* HW36_MultipleChoiceChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				D3F9ED582AE1775900323495 /* AppDelegate.swift */,
-				D3F9ED5A2AE1775900323495 /* SceneDelegate.swift */,
-				D3F9ED5C2AE1775900323495 /* ViewController.swift */,
-				D3F9ED5E2AE1775900323495 /* Main.storyboard */,
-				D3F9ED612AE1775B00323495 /* Assets.xcassets */,
-				D3F9ED632AE1775B00323495 /* LaunchScreen.storyboard */,
-				D3F9ED662AE1775B00323495 /* Info.plist */,
+				D3F9ED8C2AE177DD00323495 /* Data.swift */,
+				D3F9ED8E2AE177EE00323495 /* ScoreState.swift */,
+				D3F9ED942AE1786400323495 /* Supporting */,
+				D3F9ED932AE1784200323495 /* View Controller */,
+				D3F9ED922AE1783000323495 /* Extension */,
 			);
 			path = HW36_MultipleChoiceChallenge;
 			sourceTree = "<group>";
@@ -125,6 +131,36 @@
 				D3F9ED7B2AE1775B00323495 /* HW36_MultipleChoiceChallengeUITestsLaunchTests.swift */,
 			);
 			path = HW36_MultipleChoiceChallengeUITests;
+			sourceTree = "<group>";
+		};
+		D3F9ED922AE1783000323495 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D3F9ED902AE1780600323495 /* Question+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D3F9ED932AE1784200323495 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D3F9ED882AE177BA00323495 /* MultipleChoiceViewController.swift */,
+				D3F9ED8A2AE177CE00323495 /* HomePageViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		D3F9ED942AE1786400323495 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				D3F9ED582AE1775900323495 /* AppDelegate.swift */,
+				D3F9ED5A2AE1775900323495 /* SceneDelegate.swift */,
+				D3F9ED5E2AE1775900323495 /* Main.storyboard */,
+				D3F9ED612AE1775B00323495 /* Assets.xcassets */,
+				D3F9ED632AE1775B00323495 /* LaunchScreen.storyboard */,
+				D3F9ED662AE1775B00323495 /* Info.plist */,
+			);
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +294,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3F9ED5D2AE1775900323495 /* ViewController.swift in Sources */,
+				D3F9ED912AE1780600323495 /* Question+Ext.swift in Sources */,
+				D3F9ED8D2AE177DD00323495 /* Data.swift in Sources */,
 				D3F9ED592AE1775900323495 /* AppDelegate.swift in Sources */,
 				D3F9ED5B2AE1775900323495 /* SceneDelegate.swift in Sources */,
+				D3F9ED8F2AE177EE00323495 /* ScoreState.swift in Sources */,
+				D3F9ED8B2AE177CE00323495 /* HomePageViewController.swift in Sources */,
+				D3F9ED892AE177BA00323495 /* MultipleChoiceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
