@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D3EFCD882AE18C3D00801070 /* CodableCSV in Frameworks */ = {isa = PBXBuildFile; productRef = D3EFCD872AE18C3D00801070 /* CodableCSV */; };
 		D3F9ED592AE1775900323495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED582AE1775900323495 /* AppDelegate.swift */; };
 		D3F9ED5B2AE1775900323495 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED5A2AE1775900323495 /* SceneDelegate.swift */; };
 		D3F9ED602AE1775900323495 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3F9ED5E2AE1775900323495 /* Main.storyboard */; };
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3EFCD882AE18C3D00801070 /* CodableCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +181,9 @@
 			dependencies = (
 			);
 			name = HW36_MultipleChoiceChallenge;
+			packageProductDependencies = (
+				D3EFCD872AE18C3D00801070 /* CodableCSV */,
+			);
 			productName = HW36_MultipleChoiceChallenge;
 			productReference = D3F9ED552AE1775900323495 /* HW36_MultipleChoiceChallenge.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +256,9 @@
 				Base,
 			);
 			mainGroup = D3F9ED4C2AE1775900323495;
+			packageReferences = (
+				D3EFCD862AE18C3D00801070 /* XCRemoteSwiftPackageReference "CodableCSV" */,
+			);
 			productRefGroup = D3F9ED562AE1775900323495 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -640,6 +648,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D3EFCD862AE18C3D00801070 /* XCRemoteSwiftPackageReference "CodableCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dehesa/CodableCSV";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D3EFCD872AE18C3D00801070 /* CodableCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3EFCD862AE18C3D00801070 /* XCRemoteSwiftPackageReference "CodableCSV" */;
+			productName = CodableCSV;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D3F9ED4D2AE1775900323495 /* Project object */;
 }
