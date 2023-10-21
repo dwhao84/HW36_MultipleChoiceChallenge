@@ -113,7 +113,6 @@
 			children = (
 				D3F9ED8C2AE177DD00323495 /* Data.swift */,
 				D3F9ED8E2AE177EE00323495 /* ScoreState.swift */,
-				D3FB93DB2AE2559000651547 /* Button+Ext.swift */,
 				D3F9ED942AE1786400323495 /* Supporting */,
 				D3F9ED932AE1784200323495 /* View Controller */,
 				D3F9ED922AE1783000323495 /* Extension */,
@@ -141,6 +140,7 @@
 		D3F9ED922AE1783000323495 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D3FB93DB2AE2559000651547 /* Button+Ext.swift */,
 				D3F9ED902AE1780600323495 /* Question+Ext.swift */,
 			);
 			path = Extension;

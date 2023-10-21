@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// Set colorPalette
 struct ColorPalette {
     static let primary: UIColor   = UIColor.systemGreen
     static let secondary: UIColor = UIColor.clear

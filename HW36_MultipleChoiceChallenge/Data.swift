@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct data {
+    let question   : String
+    
+    let answerOne  : String
+    let answerTwo  : String
+    let answerThree: String
+    let answerFour : String
+}

@@ -11,20 +11,17 @@ import AVKit
 
 class HomePageViewController: UIViewController {
 
-    let appleImageView = UIImageView()
-    let titleLabel = UILabel()
+    let appleImageView  = UIImageView()
+    let titleLabel      = UILabel()
     let enterNameTextField = UITextField()
-    let arrowButton = UIButton(type: .system)
+    let arrowButton        = UIButton(type: .system)
 
     let stackView = UIStackView()
 
     var nameText: String?
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
         updateUI()
     }
 
@@ -34,8 +31,9 @@ class HomePageViewController: UIViewController {
     }
 
     @objc func arrowButtonTapped () {
-        let multipleChoiceVC = MultipleChoiceViewController ()
-
+        let multipleChoiceVC = MultipleChoiceViewController()
+        multipleChoiceVC.userNameText = enterNameTextField.text
+        multipleChoiceVC.modalPresentationStyle = .fullScreen
         present(multipleChoiceVC, animated: true)
         print("arrowButtonTapped")
 
