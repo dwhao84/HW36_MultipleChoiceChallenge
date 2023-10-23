@@ -75,8 +75,8 @@ class HomePageViewController: UIViewController {
         showKeyboard()
 
         // arrowButton
-        let configuration = UIImage.SymbolConfiguration(pointSize: 45, weight: .bold)
-        let symbolImage = UIImage(systemName: "arrow.right.circle.fill", withConfiguration: configuration )
+        let configuration = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
+        let symbolImage = UIImage(systemName: "arrow.right", withConfiguration: configuration )
         arrowButton.setImage(symbolImage, for: .normal)
         arrowButton.frame = CGRect(x: 300, y: 751, width: 95, height: 95)
         arrowButton.setTitleColor(UIColor.white, for: .normal)

@@ -19,7 +19,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     let forwardButton  = UIButton(type: .system)
 
     let questionTitleLabel       = UILabel() // Ex: How many sexy girl in Taiwan?
-    let questionStatusTitleLabel = UILabel() // Which question are we on. Ex: question number 10.
+    let questionStautsLabel = UILabel() // Which question are we on. Ex: question number 10.
 
     let welcomeTitleLabel    = UILabel()
     let questionContentLabel = UILabel()
@@ -28,16 +28,15 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
     var userNameText: String?
 
-    var questionNumber = 1
-    var progressValue: CGFloat = 0
-
     // Create an variable for initial score calculated for gameRound.
-    var score: Int = 0
+    var score:           Int = 0
 
+    // Create an variable for question type integer.
+    var index:           Int = 0
 
-    var index: Int = 0
+    var gameRoundNumber: CGFloat = 1
 
-    // Create an instance called questionSet from MultipleChoiceData.
+    // Create an instance called questionSet for MultipleChoiceData.
     let questionSet = MultipleChoiceData.data
 
     // Create an answerView content:
@@ -45,69 +44,92 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     let correctAnswerImageView = UIImageView()
     let introductionTextView = UITextView()
 
+    enum ScoreState {
+        case start
+        case wrong
+        case correct
+
+        var status: String {
+            switch self {
+                case.start:
+                    return "Just start!"
+                case.correct:
+                    return "You're correct!"
+                case .wrong:
+                    return "You're wrong"
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        updateUI()
+        configureUI()
         gameRoundTextUpdate ()
         print("MulitpleVC")
-        print(progressValue)
+        print(gameRoundNumber)
         print(questionSet)
 
     }
 
     // MARK: - configure UI
-    func updateUI () {
+    func configureUI () {
         self.view.backgroundColor = UIColor.black
 
-        let cornerRadiusValue: CGFloat = 5.0
-
-        randomShowQuestion()
+        let cornerRadiusValue: CGFloat = 25
 
         // answerButton series
         answerButtonOne.frame   = CGRect(x: 51, y: 475, width: 325, height: 50)
-        answerButtonOne.backgroundColor = UIColor(red: 23/255, green: 23/255, blue: 23/255, alpha: 1)
-        answerButtonOne.setTitle(questionSet[0].answerOne, for: .normal)
-        answerButtonOne.tintColor = UIColor.lightGray
+        answerButtonOne.backgroundColor = UIColor.black
+        answerButtonOne.setTitle(questionSet[0].answerTwo, for: .normal)
+        answerButtonOne.tintColor = UIColor.systemGray2
         answerButtonOne.isHidden = false
         answerButtonOne.layer.cornerRadius = cornerRadiusValue
         answerButtonOne.clipsToBounds = true
+        answerButtonOne.layer.borderWidth = 0.6
+        answerButtonOne.layer.borderColor = UIColor.systemGreen.cgColor
         answerButtonOne.addTarget(self, action: #selector(didTapAnswerButtonOne), for: .touchUpInside)
         view.addSubview(answerButtonOne)
 
         answerButtonTwo.frame   = CGRect(x: 51, y: 538, width: 325, height: 50)
-        answerButtonTwo.backgroundColor = UIColor(red: 23/255, green: 23/255, blue: 23/255, alpha: 1)
+        answerButtonTwo.backgroundColor = UIColor.black
         answerButtonTwo.setTitle(questionSet[0].answerTwo, for: .normal)
-        answerButtonTwo.tintColor = UIColor.lightGray
+        answerButtonTwo.tintColor = UIColor.systemGray2
         answerButtonTwo.isHidden = false
         answerButtonTwo.layer.cornerRadius = cornerRadiusValue
         answerButtonTwo.clipsToBounds = true
+        answerButtonTwo.layer.borderWidth = 0.6
+        answerButtonTwo.layer.borderColor = UIColor.systemGreen.cgColor
         answerButtonTwo.addTarget(self, action: #selector(didTapAnswerButtonTwo), for: .touchUpInside)
         view.addSubview(answerButtonTwo)
 
         answerButtonThree.frame = CGRect(x: 51, y: 603, width: 325, height: 50)
-        answerButtonThree.backgroundColor = UIColor(red: 23/255, green: 23/255, blue: 23/255, alpha: 1)
+        answerButtonThree.backgroundColor = UIColor.black
         answerButtonThree.setTitle(questionSet[0].answerThree, for: .normal)
-        answerButtonThree.tintColor = UIColor.lightGray
+        answerButtonThree.tintColor = UIColor.systemGray2
         answerButtonThree.isHidden = false
         answerButtonThree.layer.cornerRadius = cornerRadiusValue
         answerButtonThree.clipsToBounds = true
+        answerButtonThree.layer.borderWidth = 0.6
+        answerButtonThree.layer.borderColor = UIColor.systemGreen.cgColor
         answerButtonThree.addTarget(self, action: #selector(didTapAnswerButtonThree), for: .touchUpInside)
         view.addSubview(answerButtonThree)
 
         answerButtonFour.frame  = CGRect(x: 51, y: 667, width: 325, height: 50)
-        answerButtonFour.backgroundColor = UIColor(red: 23/255, green: 23/255, blue: 23/255, alpha: 1)
+        answerButtonFour.backgroundColor = UIColor.black
         answerButtonFour.setTitle(questionSet[0].answerFour, for: .normal)
-        answerButtonFour.tintColor = UIColor.lightGray
+        answerButtonFour.tintColor = UIColor.systemGray2
         answerButtonFour.isHidden = false
         answerButtonFour.layer.cornerRadius = cornerRadiusValue
         answerButtonFour.clipsToBounds = true
+        answerButtonFour.layer.borderWidth = 0.6
+        answerButtonFour.layer.borderColor = UIColor.systemGreen.cgColor
         answerButtonFour.addTarget(self, action: #selector(didTapAnswerButtonFour), for: .touchUpInside)
         view.addSubview(answerButtonFour)
 
         // forwardButton 往前
-        let configuration = UIImage.SymbolConfiguration(pointSize: 45, weight: .bold)
-        let forwardImageSymbol = UIImage(systemName: "arrow.right.circle.fill", withConfiguration: configuration)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
+        let forwardImageSymbol = UIImage(systemName: "arrow.forward.circle", withConfiguration: configuration)
         forwardButton.setImage(forwardImageSymbol, for: .normal)
         forwardButton.frame = CGRect(x: 317, y: 818, width: 60, height: 60)
         forwardButton.setTitleColor(UIColor.white, for: .normal)
@@ -117,7 +139,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         view.addSubview(forwardButton)
 
         // backwardButton 往後
-        let backwardConfiguration = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)
+        let backwardConfiguration = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let backwardImageSymbol = UIImage(systemName: "arrow.left", withConfiguration: backwardConfiguration)
         backwardButton.setImage(backwardImageSymbol, for: .normal)
         backwardButton.frame = CGRect(x: 41, y: 826, width: 45, height: 45)
@@ -127,7 +149,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         backwardButton.addTarget(self, action: #selector(didTapBackwardButton), for: .touchUpInside)
         view.addSubview(backwardButton)
 
-
+        // welcomeTitleLabel
         welcomeTitleLabel.frame = CGRect(x: 51, y: 52, width: 326, height: 80)
         welcomeTitleLabel.text = "Welcome \(userNameText ?? "")"
         welcomeTitleLabel.font = UIFont.boldSystemFont(ofSize: 30)
@@ -137,6 +159,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         welcomeTitleLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(welcomeTitleLabel)
 
+        // questionTitleLabel
         questionTitleLabel.frame = CGRect(x: 51, y: 150, width: 325, height: 270)
         questionTitleLabel.text = questionSet[0].question
         questionTitleLabel.font = UIFont.systemFont(ofSize: 20)
@@ -146,8 +169,9 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         questionTitleLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(questionTitleLabel)
 
+        // questionContentLabel
         questionContentLabel.frame = CGRect(x: 51, y: 130, width: 124, height: 30)
-        questionContentLabel.text = "Question\(questionNumber)"
+        questionContentLabel.text = "Question \(Int(gameRoundNumber))"
         questionContentLabel.font = UIFont.systemFont(ofSize: 25)
         questionContentLabel.textColor = UIColor.white
         questionContentLabel.textAlignment = .left
@@ -155,32 +179,24 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         questionContentLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(questionContentLabel)
 
-        questionStatusTitleLabel.frame = CGRect(x: 51, y: 754, width: 135, height: 20)
-        questionStatusTitleLabel.text = "Question \(Int(progressValue * 10)) / 10"
-        questionStatusTitleLabel.font = UIFont.systemFont(ofSize: 19)
-        questionStatusTitleLabel.textColor = UIColor.lightGray
-        questionStatusTitleLabel.textAlignment = .left
-        questionStatusTitleLabel.numberOfLines = 1
-        questionStatusTitleLabel.adjustsFontSizeToFitWidth = true
-        view.addSubview(questionStatusTitleLabel)
+        // questionStautsLabel
+        questionStautsLabel.frame = CGRect(x: 51, y: 754, width: 135, height: 20)
+        questionStautsLabel.text = "Question \(Int(gameRoundNumber * 10)) / 10"
+        questionStautsLabel.font = UIFont.systemFont(ofSize: 19)
+        questionStautsLabel.textColor = UIColor.lightGray
+        questionStautsLabel.textAlignment = .left
+        questionStautsLabel.numberOfLines = 1
+        questionStautsLabel.adjustsFontSizeToFitWidth = true
+        view.addSubview(questionStautsLabel)
 
         // progressView
         progressView.frame  = CGRect(x: 51, y: 795, width: 325, height: 5)
-        progressView.progress = Float(progressValue / 10)
-
+        progressView.progress = Float(gameRoundNumber / 10)
         progressView.tintColor = UIColor.systemGreen
         view.addSubview(progressView)
     }
 
-    func randomShowQuestion () {
-        let randomNumber = Int.random(in: 0...12)
-    }
-
-    func gameRoundTextUpdate () {
-        progressView.setProgress(Float((progressValue ) / 10), animated: true)
-        questionStatusTitleLabel.text = "Question \(Int(progressValue)) / 10"
-    }
-
+    // showAnswerView
     func showAnswerView () {
         let cornerRadiusValue: CGFloat = 10.0
         let imageViewCornerRadiusValue: CGFloat = 1
@@ -191,6 +207,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         print("Into the answerView")
 
+        // answerView Auto-Layout
         answerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             answerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -199,12 +216,14 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
             answerView.heightAnchor.constraint(equalToConstant: 600)
         ])
 
+        // correctAnswerImageView
         correctAnswerImageView.image = UIImage(named: "")
         correctAnswerImageView.layer.cornerRadius = imageViewCornerRadiusValue
         correctAnswerImageView.clipsToBounds = true
         correctAnswerImageView.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         answerView.addSubview(correctAnswerImageView)
 
+        // introductionTextView
         introductionTextView.frame = CGRect(x: 100, y: 200, width: 100, height: 100)
         introductionTextView.text = ""
         introductionTextView.font = UIFont.systemFont(ofSize: 18)
@@ -212,15 +231,42 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         introductionTextView.textAlignment = .left
     }
 
-    func configureQuestionLogic () {
-        if score < 10 {
+    // If the gameRound equal ten rounds, then the game is over.
+    func configureQuestionAnswerLogic (gameState: ScoreState) {
 
+        if questionSet[0].question == questionSet[0].answerOne {
+
+        }
+
+
+        if gameRoundNumber < 11 {
+            index += 1
+            gameRoundTextUpdate ()
+            showFinalScoreVC()
         } else {
-
+            gameRoundTextUpdate()
+            index += 0
         }
     }
 
-    // MARK: - alertController
+
+    func showFinalScoreVC () {
+        let finalScoreViewController = FinalScoreViewController()
+        present(finalScoreViewController, animated: true)
+    }
+
+
+    func randomShowQuestion () {
+        var randomQuestion = questionSet.shuffled()
+    }
+
+    func gameRoundTextUpdate () {
+        progressView.setProgress(Float((gameRoundNumber ) / 10), animated: true)
+        questionStautsLabel.text = "Question \(Int(gameRoundNumber)) / 10"
+        questionContentLabel.text = "Question \(Int(gameRoundNumber))"
+    }
+
+    // MARK: - Create AlertController
     func showCorrectAlertController() {
         let correctAlertController = UIAlertController(title: "Correct!🎉", message: "Congratulations!", preferredStyle: .alert)
         correctAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
@@ -235,45 +281,46 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
     // MARK: - didTapButton
     @objc func didTapAnswerButtonOne(_ sender: UIButton) {
-        progressValue += 1
+        gameRoundNumber += 1
         gameRoundTextUpdate ()
-        print(progressValue)
+        print(gameRoundNumber)
       print("didTapAnswerButtonOne")
     }
 
     @objc func didTapAnswerButtonTwo(_ sender: UIButton) {
-        progressValue += 1
+        gameRoundNumber += 1
         gameRoundTextUpdate ()
-        print(progressValue)
+        print(gameRoundNumber)
      print("didTapAnswerButtonTwo")
     }
 
     @objc func didTapAnswerButtonThree(_ sender: UIButton) {
-        progressValue += 1
+        gameRoundNumber += 1
         gameRoundTextUpdate ()
-        print(progressValue)
+        print(gameRoundNumber)
         print("didTapAnswerButtonThree")
     }
 
     @objc func didTapAnswerButtonFour(_ sender: UIButton) {
-        progressValue += 1
+        gameRoundNumber += 1
         gameRoundTextUpdate ()
-        print(progressValue)
+        print(gameRoundNumber)
         print("didTapAnswerButtonFour")
     }
 
-
     @objc func didTapForwardButton () {
         index += 1
-//        showAnswerView()
+        showFinalScoreVC ()
         print("didTapForwardButton")
+        print(index)
     }
 
     @objc func didTapBackwardButton () {
         index -= 1
         print("didTapbackwardButton")
+        print(index)
     }
-
+        
 
 
 
