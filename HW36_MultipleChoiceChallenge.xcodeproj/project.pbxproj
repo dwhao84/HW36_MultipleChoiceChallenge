@@ -20,7 +20,7 @@
 		D3F9ED892AE177BA00323495 /* MultipleChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED882AE177BA00323495 /* MultipleChoiceViewController.swift */; };
 		D3F9ED8B2AE177CE00323495 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED8A2AE177CE00323495 /* HomePageViewController.swift */; };
 		D3F9ED8D2AE177DD00323495 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED8C2AE177DD00323495 /* Data.swift */; };
-		D3F9ED8F2AE177EE00323495 /* ScoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED8E2AE177EE00323495 /* ScoreState.swift */; };
+		D3F9ED8F2AE177EE00323495 /* AnswerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED8E2AE177EE00323495 /* AnswerStatus.swift */; };
 		D3F9ED912AE1780600323495 /* Question+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED902AE1780600323495 /* Question+Ext.swift */; };
 		D3FB93DC2AE2559000651547 /* Button+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FB93DB2AE2559000651547 /* Button+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -59,7 +59,7 @@
 		D3F9ED882AE177BA00323495 /* MultipleChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceViewController.swift; sourceTree = "<group>"; };
 		D3F9ED8A2AE177CE00323495 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		D3F9ED8C2AE177DD00323495 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		D3F9ED8E2AE177EE00323495 /* ScoreState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreState.swift; sourceTree = "<group>"; };
+		D3F9ED8E2AE177EE00323495 /* AnswerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerStatus.swift; sourceTree = "<group>"; };
 		D3F9ED902AE1780600323495 /* Question+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Question+Ext.swift"; sourceTree = "<group>"; };
 		D3FB93DB2AE2559000651547 /* Button+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D307200E2AE6CC09005DA03C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D3F9ED8C2AE177DD00323495 /* Data.swift */,
+				D3F9ED8E2AE177EE00323495 /* AnswerStatus.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D3F9ED4C2AE1775900323495 = {
 			isa = PBXGroup;
 			children = (
@@ -113,8 +122,7 @@
 		D3F9ED572AE1775900323495 /* HW36_MultipleChoiceChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				D3F9ED8C2AE177DD00323495 /* Data.swift */,
-				D3F9ED8E2AE177EE00323495 /* ScoreState.swift */,
+				D307200E2AE6CC09005DA03C /* Model */,
 				D3F9ED942AE1786400323495 /* Supporting */,
 				D3F9ED932AE1784200323495 /* View Controller */,
 				D3F9ED922AE1783000323495 /* Extension */,
@@ -314,7 +322,7 @@
 				D3F9ED592AE1775900323495 /* AppDelegate.swift in Sources */,
 				D3FB93DC2AE2559000651547 /* Button+Ext.swift in Sources */,
 				D3F9ED5B2AE1775900323495 /* SceneDelegate.swift in Sources */,
-				D3F9ED8F2AE177EE00323495 /* ScoreState.swift in Sources */,
+				D3F9ED8F2AE177EE00323495 /* AnswerStatus.swift in Sources */,
 				D3F9ED8B2AE177CE00323495 /* HomePageViewController.swift in Sources */,
 				D3F9ED892AE177BA00323495 /* MultipleChoiceViewController.swift in Sources */,
 			);

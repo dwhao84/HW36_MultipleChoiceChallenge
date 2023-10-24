@@ -23,6 +23,8 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        touchTheViewAndDismissKeyboard ()
+        enterNameTextField.delegate = self
     }
 
 
@@ -30,14 +32,7 @@ class HomePageViewController: UIViewController {
         enterNameTextField.becomeFirstResponder()
     }
 
-    @objc func arrowButtonTapped () {
-        let multipleChoiceVC = MultipleChoiceViewController()
-        multipleChoiceVC.userNameText = enterNameTextField.text
-        multipleChoiceVC.modalPresentationStyle = .fullScreen
-        present(multipleChoiceVC, animated: true)
-        print("arrowButtonTapped")
-    }
-    
+    // MARK: - Set up UI
     func updateUI () {
 
         self.view.backgroundColor = UIColor.black
@@ -85,6 +80,7 @@ class HomePageViewController: UIViewController {
         view.addSubview(arrowButton)
     }
 
+    // MARK: - Set up AutoLayout
     func setStackViewConstriant () {
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -96,15 +92,42 @@ class HomePageViewController: UIViewController {
 
     }
 
+    // MARK: - Trigger arrowButton
+    @objc func arrowButtonTapped () {
+        let multipleChoiceVC = MultipleChoiceViewController()
+        guard let nameText = enterNameTextField.text, !nameText.isEmpty else { return }
+        multipleChoiceVC.userNameText = enterNameTextField.text
+        multipleChoiceVC.modalPresentationStyle = .fullScreen
+        present(multipleChoiceVC, animated: true)
+        print("arrowButtonTapped")
+    }
+
+    // MARK: - Dismiss keyboard
+    @objc func dismissKeyboard () {
+        self.view.endEditing(true)
+    }
+
+    func touchTheViewAndDismissKeyboard () {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
 
 }
 
+// MARK: - TextField delegate
 extension HomePageViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("textFieldShouldReturn")
         return true
     }
 
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("textFieldShouldBeginEditing")
+        return true
+    }
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("textFieldDidBeginEditing")
+    }
 
 }

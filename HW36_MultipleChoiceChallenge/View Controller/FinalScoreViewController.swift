@@ -18,7 +18,6 @@ class FinalScoreViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
-
     }
 
     func configureUI () {
