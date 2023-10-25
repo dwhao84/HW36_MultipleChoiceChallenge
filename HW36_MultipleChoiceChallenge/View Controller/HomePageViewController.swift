@@ -16,6 +16,8 @@ class HomePageViewController: UIViewController {
     let enterNameTextField = UITextField()
     let arrowButton        = UIButton(type: .system)
 
+    let loginStatusLabel = UILabel()
+
     let stackView = UIStackView()
 
     var nameText: String?
@@ -25,6 +27,8 @@ class HomePageViewController: UIViewController {
         updateUI()
         touchTheViewAndDismissKeyboard ()
         enterNameTextField.delegate = self
+
+        loginStatusLabel.isHidden = true
     }
 
 
@@ -35,6 +39,7 @@ class HomePageViewController: UIViewController {
     // MARK: - Set up UI
     func updateUI () {
 
+        
         self.view.backgroundColor = UIColor.black
 
         // titleLabel
@@ -44,6 +49,14 @@ class HomePageViewController: UIViewController {
         titleLabel.text = "Welcome to Apple Multiple Choice "
         titleLabel.numberOfLines = 2
         view.addSubview(titleLabel)
+
+        // loginStatusLabel
+        loginStatusLabel.frame = CGRect(x: 60, y: 595, width: 320, height: 20)
+        loginStatusLabel.font = UIFont.systemFont(ofSize: 14)
+        loginStatusLabel.textColor = UIColor.systemRed
+        loginStatusLabel.text = "Please enter your name"
+        loginStatusLabel.numberOfLines = 1
+        view.addSubview(loginStatusLabel)
 
         // appleImageView
         let animatedImage = UIImage.animatedImageNamed("WWDC23_Apple_", duration: 4)
@@ -128,6 +141,15 @@ extension HomePageViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("textFieldDidBeginEditing")
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        print("textFieldDidChangeSelection")
+        if enterNameTextField.text?.isEmpty == true {
+            loginStatusLabel.isHidden = false
+        } else {
+            loginStatusLabel.isHidden = true
+        }
     }
 
 }

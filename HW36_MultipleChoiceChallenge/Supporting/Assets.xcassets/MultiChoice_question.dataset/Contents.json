@@ -2,7 +2,8 @@
   "data" : [
     {
       "filename" : "MultiChoice_question.csv",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "universal-type-identifier" : "public.comma-separated-values-text"
     }
   ],
   "info" : {

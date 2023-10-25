@@ -29,7 +29,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     var userNameText: String?
 
     // Create an variable for initial score calculated for gameRound.
-    var score:           Int = 0
+    var score: Int = 0
 
     // Create an variable for question type integer.
     var currentQuestionIndex: Int = 0
@@ -40,6 +40,8 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     let questionSet = MultipleChoiceData.data
 
     var shuffledQuestions: [MultipleChoiceData] = []
+
+    let randomQuestion = getRandomQuestion()
 
     // Create an answerView content:
     let answerView = UIView()
@@ -66,7 +68,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         // answerButton series
         answerButtonOne.frame   = CGRect(x: 51, y: 475, width: 325, height: 50)
         answerButtonOne.backgroundColor = UIColor.black
-        answerButtonOne.setTitle(questionSet[0].answerOne, for: .normal)
+//        answerButtonOne.setTitle(randomQuestion.question, for: .normal)
         answerButtonOne.tintColor = UIColor.lightGray
         answerButtonOne.isHidden = false
         answerButtonOne.layer.cornerRadius = cornerRadiusValue
@@ -78,7 +80,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         answerButtonTwo.frame   = CGRect(x: 51, y: 538, width: 325, height: 50)
         answerButtonTwo.backgroundColor = UIColor.black
-        answerButtonTwo.setTitle(questionSet[0].answerTwo, for: .normal)
+//        answerButtonTwo.setTitle(randomQuestion.answerTwo, for: .normal)
         answerButtonTwo.tintColor = UIColor.lightGray
         answerButtonTwo.isHidden = false
         answerButtonTwo.layer.cornerRadius = cornerRadiusValue
@@ -90,7 +92,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         answerButtonThree.frame = CGRect(x: 51, y: 603, width: 325, height: 50)
         answerButtonThree.backgroundColor = UIColor.black
-        answerButtonThree.setTitle(questionSet[0].answerThree, for: .normal)
+//        answerButtonThree.setTitle(randomQuestion.answerThree, for: .normal)
         answerButtonThree.tintColor = UIColor.lightGray
         answerButtonThree.isHidden = false
         answerButtonThree.layer.cornerRadius = cornerRadiusValue
@@ -102,7 +104,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         answerButtonFour.frame  = CGRect(x: 51, y: 667, width: 325, height: 50)
         answerButtonFour.backgroundColor = UIColor.black
-        answerButtonFour.setTitle(questionSet[0].answerFour, for: .normal)
+//        answerButtonFour.setTitle(randomQuestion.answerFour, for: .normal)
         answerButtonFour.tintColor = UIColor.lightGray
         answerButtonFour.isHidden = false
         answerButtonFour.layer.cornerRadius = cornerRadiusValue
@@ -136,7 +138,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         // welcomeTitleLabel
         welcomeTitleLabel.frame = CGRect(x: 51, y: 52, width: 326, height: 80)
-        welcomeTitleLabel.text = "Welcome \(userNameText ?? "")"
+        welcomeTitleLabel.text = "Welcome \(userNameText ?? ""),"
         welcomeTitleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         welcomeTitleLabel.textColor = UIColor.white
         welcomeTitleLabel.textAlignment = .left
@@ -180,7 +182,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         progressView.tintColor = UIColor.systemGreen
         view.addSubview(progressView)
 
-        displayShuffledQuestion()
+        displayRandomQuestion()
     }
 
     // showAnswerView
@@ -218,41 +220,9 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         introductionTextView.textAlignment = .left
     }
 
-//    // If the gameRound equal ten rounds, then the game is over.
-//    func configureQuestionAnswerLogic () {
-//        if gameRoundNumber < 11 {
-//            currentQuestionIndex += 1
-//            gameRoundTextUpdate ()
-//            showFinalScoreVC()
-//        } else {
-//            gameRoundTextUpdate()
-//            currentQuestionIndex += 0
-//        }
-//    }
-
-
-
     func showFinalScoreVC () {
         let finalScoreViewController = FinalScoreViewController()
         present(finalScoreViewController, animated: true)
-    }
-
-
-    func shuffledToShowQuestion () {
-        shuffledQuestions = questionSet.shuffled()
-    }
-
-    func displayShuffledQuestion () {
-        guard currentQuestionIndex < shuffledQuestions.count else { return }
-
-        let questions = shuffledQuestions[currentQuestionIndex]
-
-        questionContentLabel.text = questions.question
-        answerButtonOne.setTitle(questions.answerOne, for: .normal)
-        answerButtonTwo.setTitle(questions.answerTwo, for: .normal)
-        answerButtonFour.setTitle(questions.answerFour, for: .normal)
-        answerButtonThree.setTitle(questions.answerThree, for: .normal)
-
     }
 
     func gameRoundTextUpdate () {
@@ -260,6 +230,17 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         questionStautsLabel.text = "Question \(Int(gameRoundNumber)) / 10"
         questionContentLabel.text = "Question \(Int(gameRoundNumber))"
     }
+
+    func displayRandomQuestion () {
+        let randomQuestion = getRandomQuestion()
+        questionTitleLabel.text = randomQuestion.question
+        answerButtonOne.setTitle(randomQuestion.answerOne, for: .normal)
+        answerButtonTwo.setTitle(randomQuestion.answerTwo, for: .normal)
+        answerButtonThree.setTitle(randomQuestion.answerThree, for: .normal)
+        answerButtonFour.setTitle(randomQuestion.answerFour, for: .normal)
+    }
+
+
 
     // MARK: - Create AlertController
     func showCorrectAlertController() {
@@ -276,59 +257,77 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
     // MARK: - didTapButton
     @objc func didTapAnswerButtonOne(_ sender: UIButton) {
-        gameRoundNumber += 1
-        displayShuffledQuestion ()
-        gameRoundTextUpdate ()
-        print(gameRoundNumber)
-      print("didTapAnswerButtonOne")
-    }
 
-    @objc func didTapAnswerButtonTwo(_ sender: UIButton) {
-        gameRoundNumber += 1
-        gameRoundTextUpdate ()
-        print(gameRoundNumber)
-     print("didTapAnswerButtonTwo")
-    }
+        print("didTapAnswerButtonOne")
 
-    @objc func didTapAnswerButtonThree(_ sender: UIButton) {
-        gameRoundNumber += 1
-        gameRoundTextUpdate ()
-        print(gameRoundNumber)
-        print("didTapAnswerButtonThree")
-    }
-
-    @objc func didTapAnswerButtonFour(_ sender: UIButton) {
-        gameRoundNumber += 1
-        gameRoundTextUpdate ()
-        print(gameRoundNumber)
-        print("didTapAnswerButtonFour")
-    }
-
-    @objc func didTapForwardButton () {
-        if currentQuestionIndex < shuffledQuestions.count - 1 {
-            currentQuestionIndex += 1
-            print("didTapForwardButton")
-            print(currentQuestionIndex)
-            displayShuffledQuestion ()
-        } else if currentQuestionIndex == 10 {
-            showFinalScoreVC ()
-            print("currentQuestionIndex equals ten")
-            print(currentQuestionIndex)
-            displayShuffledQuestion ()
+        if let selectedAnswer = sender.title(for: .normal),
+            selectedAnswer == randomQuestion.correctAnswer {
+            print("Correct answer!")
+            showCorrectAlertController()
         } else {
-            print("didTapForwardButton")
-            print(currentQuestionIndex)
+            print("Wrong answer!")
+            showWrongAlertController()
         }
     }
 
-    @objc func didTapBackwardButton () {
-        currentQuestionIndex -= 1
-        print("didTapbackwardButton")
-        print(currentQuestionIndex)
+    @objc func didTapAnswerButtonTwo(_ sender: UIButton) {
+
+        print("didTapAnswerButtonTwo")
+
+        if let selectedAnswer = sender.title(for: .normal),
+            selectedAnswer == randomQuestion.correctAnswer {
+            print("Correct answer!")
+            showCorrectAlertController()
+        } else {
+            print("Wrong answer!")
+            showWrongAlertController()
+        }
     }
-        
 
+    @objc func didTapAnswerButtonThree(_ sender: UIButton) {
 
+        print("didTapAnswerButtonThree")
+
+        if let selectedAnswer = sender.title(for: .normal),
+            selectedAnswer == randomQuestion.correctAnswer {
+            print("Correct answer!")
+            showCorrectAlertController()
+        } else {
+            print("Wrong answer!")
+            showWrongAlertController()
+        }
+    }
+
+    @objc func didTapAnswerButtonFour(_ sender: UIButton) {
+
+        print("didTapAnswerButtonFour")
+
+        if let selectedAnswer = sender.title(for: .normal),
+            selectedAnswer == randomQuestion.correctAnswer {
+            print("Correct answer!")
+            print(selectedAnswer)
+            showCorrectAlertController()
+        } else {
+            print("Wrong answer!")
+            showWrongAlertController()
+        }
+    }
+
+    @objc func didTapForwardButton () {
+        displayRandomQuestion ()
+        gameRoundNumber += 1
+        gameRoundTextUpdate ()
+        print(gameRoundNumber)
+        print("didTapForwardButton")
+    }
+
+    @objc func didTapBackwardButton () {
+        displayRandomQuestion ()
+        gameRoundNumber += 1
+        gameRoundTextUpdate ()
+        print(gameRoundNumber)
+        print("didTapbackwardButton")
+    }
 
 
 
