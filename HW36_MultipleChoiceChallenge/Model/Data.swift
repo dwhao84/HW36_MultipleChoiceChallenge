@@ -26,7 +26,7 @@ struct MultipleChoiceData: Codable {
 extension MultipleChoiceData {
     static var data: [Self] {
         var array = [Self]()
-        if let data = NSDataAsset(name: "MultiChoice_question")?.data {
+        if let data = NSDataAsset(name: "MultiChoice_question-Grid view")?.data {
             let decoder = CSVDecoder {
                 $0.headerStrategy = .firstLine
             }

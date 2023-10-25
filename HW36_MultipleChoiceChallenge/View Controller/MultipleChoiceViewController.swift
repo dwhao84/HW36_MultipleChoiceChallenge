@@ -260,28 +260,34 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         print("didTapAnswerButtonOne")
 
-        if let selectedAnswer = sender.title(for: .normal),
-            selectedAnswer == randomQuestion.correctAnswer {
-            print("Correct answer!")
-            showCorrectAlertController()
-        } else {
-            print("Wrong answer!")
-            showWrongAlertController()
-        }
+        guard let selectedAnswer = sender.title(for: .normal) else {
+                print("No title found for the button")
+                return
+            }
+            if selectedAnswer == randomQuestion.correctAnswer {
+                print("Correct answer!")
+                showCorrectAlertController()
+            } else {
+                print("Wrong answer!")
+                showWrongAlertController()
+            }
     }
 
     @objc func didTapAnswerButtonTwo(_ sender: UIButton) {
 
         print("didTapAnswerButtonTwo")
 
-        if let selectedAnswer = sender.title(for: .normal),
-            selectedAnswer == randomQuestion.correctAnswer {
-            print("Correct answer!")
-            showCorrectAlertController()
-        } else {
-            print("Wrong answer!")
-            showWrongAlertController()
-        }
+        guard let selectedAnswer = sender.title(for: .normal) else {
+                print("No title found for the button")
+                return
+            }
+            if selectedAnswer == randomQuestion.correctAnswer {
+                print("Correct answer!")
+                showCorrectAlertController()
+            } else {
+                print("Wrong answer!")
+                showWrongAlertController()
+            }
     }
 
     @objc func didTapAnswerButtonThree(_ sender: UIButton) {
