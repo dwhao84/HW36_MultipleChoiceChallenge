@@ -21,6 +21,8 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     let questionTitleLabel       = UILabel() // Ex: How many sexy girl in Taiwan?
     let questionStautsLabel = UILabel() // Which question are we on. Ex: question number 10.
 
+    let currentScoreLabel = UILabel()
+
     let welcomeTitleLabel    = UILabel()
     let questionContentLabel = UILabel()
 
@@ -31,9 +33,6 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     // Create an variable for initial score calculated for gameRound.
     var score: Int = 0
 
-    // Create an variable for question type integer.
-    var currentQuestionIndex: Int = 0
-
     var gameRoundNumber: CGFloat = 1
 
     // Create an instance called questionSet for MultipleChoiceData.
@@ -42,6 +41,8 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     var shuffledQuestions: [MultipleChoiceData] = []
 
     let randomQuestion = getRandomQuestion()
+
+    var selectedAnswerContent: String?
 
     // Create an answerView content:
     let answerView = UIView()
@@ -74,7 +75,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         answerButtonOne.layer.cornerRadius = cornerRadiusValue
         answerButtonOne.clipsToBounds = true
         answerButtonOne.layer.borderWidth = 0.6
-        answerButtonOne.layer.borderColor = UIColor.systemGreen.cgColor
+        answerButtonOne.layer.borderColor = UIColor.systemBlue.cgColor
         answerButtonOne.addTarget(self, action: #selector(didTapAnswerButtonOne), for: .touchUpInside)
         view.addSubview(answerButtonOne)
 
@@ -86,7 +87,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         answerButtonTwo.layer.cornerRadius = cornerRadiusValue
         answerButtonTwo.clipsToBounds = true
         answerButtonTwo.layer.borderWidth = 0.6
-        answerButtonTwo.layer.borderColor = UIColor.systemGreen.cgColor
+        answerButtonTwo.layer.borderColor = UIColor.systemBlue.cgColor
         answerButtonTwo.addTarget(self, action: #selector(didTapAnswerButtonTwo), for: .touchUpInside)
         view.addSubview(answerButtonTwo)
 
@@ -98,7 +99,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         answerButtonThree.layer.cornerRadius = cornerRadiusValue
         answerButtonThree.clipsToBounds = true
         answerButtonThree.layer.borderWidth = 0.6
-        answerButtonThree.layer.borderColor = UIColor.systemGreen.cgColor
+        answerButtonThree.layer.borderColor = UIColor.systemBlue.cgColor
         answerButtonThree.addTarget(self, action: #selector(didTapAnswerButtonThree), for: .touchUpInside)
         view.addSubview(answerButtonThree)
 
@@ -110,7 +111,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         answerButtonFour.layer.cornerRadius = cornerRadiusValue
         answerButtonFour.clipsToBounds = true
         answerButtonFour.layer.borderWidth = 0.6
-        answerButtonFour.layer.borderColor = UIColor.systemGreen.cgColor
+        answerButtonFour.layer.borderColor = UIColor.systemBlue.cgColor
         answerButtonFour.addTarget(self, action: #selector(didTapAnswerButtonFour), for: .touchUpInside)
         view.addSubview(answerButtonFour)
 
@@ -120,7 +121,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         forwardButton.setImage(forwardImageSymbol, for: .normal)
         forwardButton.frame = CGRect(x: 317, y: 818, width: 60, height: 60)
         forwardButton.setTitleColor(UIColor.white, for: .normal)
-        forwardButton.tintColor = UIColor.systemGreen
+        forwardButton.tintColor = UIColor.systemBlue
         forwardButton.isHidden = false
         forwardButton.addTarget(self, action: #selector(didTapForwardButton), for: .touchUpInside)
         view.addSubview(forwardButton)
@@ -131,13 +132,13 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         backwardButton.setImage(backwardImageSymbol, for: .normal)
         backwardButton.frame = CGRect(x: 41, y: 826, width: 45, height: 45)
         backwardButton.setTitleColor(UIColor.white, for: .normal)
-        backwardButton.tintColor = UIColor.systemGreen
+        backwardButton.tintColor = UIColor.systemBlue
         backwardButton.isHidden = false
         backwardButton.addTarget(self, action: #selector(didTapBackwardButton), for: .touchUpInside)
         view.addSubview(backwardButton)
 
         // welcomeTitleLabel
-        welcomeTitleLabel.frame = CGRect(x: 51, y: 52, width: 326, height: 80)
+        welcomeTitleLabel.frame = CGRect(x: 51, y: 68, width: 326, height: 80)
         welcomeTitleLabel.text = "Welcome \(userNameText ?? ""),"
         welcomeTitleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         welcomeTitleLabel.textColor = UIColor.white
@@ -148,7 +149,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         // questionTitleLabel
         questionTitleLabel.frame = CGRect(x: 51, y: 150, width: 325, height: 270)
-        questionTitleLabel.text = questionSet[0].question
+//        questionTitleLabel.text = questionSet[0].question
         questionTitleLabel.font = UIFont.systemFont(ofSize: 20)
         questionTitleLabel.textColor = UIColor.white
         questionTitleLabel.textAlignment = .left
@@ -176,10 +177,19 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         questionStautsLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(questionStautsLabel)
 
+        currentScoreLabel.frame = CGRect(x: 51, y: 168, width: 96, height: 20)
+        currentScoreLabel.text = "Score: \(score) points"
+        currentScoreLabel.font = UIFont.systemFont(ofSize: 16)
+        currentScoreLabel.textColor = UIColor.lightGray
+        currentScoreLabel.textAlignment = .left
+        currentScoreLabel.numberOfLines = 1
+        currentScoreLabel.adjustsFontSizeToFitWidth = true
+        view.addSubview(currentScoreLabel)
+
         // progressView
         progressView.frame  = CGRect(x: 51, y: 795, width: 325, height: 5)
         progressView.progress = Float(gameRoundNumber / 10)
-        progressView.tintColor = UIColor.systemGreen
+        progressView.tintColor = UIColor.systemBlue
         view.addSubview(progressView)
 
         displayRandomQuestion()
@@ -260,47 +270,55 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         print("didTapAnswerButtonOne")
 
-        guard let selectedAnswer = sender.title(for: .normal) else {
-                print("No title found for the button")
-                return
-            }
-            if selectedAnswer == randomQuestion.correctAnswer {
-                print("Correct answer!")
-                showCorrectAlertController()
-            } else {
-                print("Wrong answer!")
-                showWrongAlertController()
-            }
+        if let selectedAnswer = sender.title(for: .normal),
+            selectedAnswer == randomQuestion.correctAnswer {
+            showCorrectAlertController()
+            score += 10
+            currentScoreLabel.text = "Score: \(score) points"
+            print("Correct answer!")
+            print(score)
+        } else {
+            showWrongAlertController()
+            print("Wrong answer!")
+            print(score)
+        }
     }
 
     @objc func didTapAnswerButtonTwo(_ sender: UIButton) {
 
+        selectedAnswerContent = sender.title(for: .normal)
         print("didTapAnswerButtonTwo")
 
-        guard let selectedAnswer = sender.title(for: .normal) else {
-                print("No title found for the button")
-                return
-            }
-            if selectedAnswer == randomQuestion.correctAnswer {
-                print("Correct answer!")
-                showCorrectAlertController()
-            } else {
-                print("Wrong answer!")
-                showWrongAlertController()
-            }
+        if let selectedAnswer = sender.title(for: .normal),
+            selectedAnswer == randomQuestion.correctAnswer {
+            showCorrectAlertController()
+            score += 10
+            currentScoreLabel.text = "Score: \(score) points"
+            print("Correct answer!")
+            print(score)
+        } else {
+            showWrongAlertController()
+            print("Wrong answer!")
+            print(score)
+        }
     }
 
     @objc func didTapAnswerButtonThree(_ sender: UIButton) {
 
+        selectedAnswerContent = sender.title(for: .normal)
         print("didTapAnswerButtonThree")
 
         if let selectedAnswer = sender.title(for: .normal),
             selectedAnswer == randomQuestion.correctAnswer {
-            print("Correct answer!")
             showCorrectAlertController()
+            score += 10
+            currentScoreLabel.text = "Score: \(score) points"
+            print("Correct answer!")
+            print(score)
         } else {
-            print("Wrong answer!")
             showWrongAlertController()
+            print("Wrong answer!")
+            print(score)
         }
     }
 
@@ -310,31 +328,48 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         if let selectedAnswer = sender.title(for: .normal),
             selectedAnswer == randomQuestion.correctAnswer {
-            print("Correct answer!")
-            print(selectedAnswer)
             showCorrectAlertController()
+            score += 10
+            currentScoreLabel.text = "Score: \(score) points"
+            print("Correct answer!")
+            print(score)
         } else {
-            print("Wrong answer!")
             showWrongAlertController()
+            print("Wrong answer!")
+            print(score)
         }
     }
 
     @objc func didTapForwardButton () {
-        displayRandomQuestion ()
-        gameRoundNumber += 1
-        gameRoundTextUpdate ()
-        print(gameRoundNumber)
-        print("didTapForwardButton")
+        if gameRoundNumber < 10.0 {
+            displayRandomQuestion ()
+            gameRoundNumber += 1
+            gameRoundTextUpdate ()
+            print("The game round is \(gameRoundNumber)")
+        } else {
+            gameRoundNumber += 0
+            print("Game Over")
+
+            let finalScoreVC = FinalScoreViewController()
+            finalScoreVC.scoreValue = score
+            present(finalScoreVC, animated: true)
+        }
     }
 
     @objc func didTapBackwardButton () {
-        displayRandomQuestion ()
-        gameRoundNumber += 1
-        gameRoundTextUpdate ()
-        print(gameRoundNumber)
-        print("didTapbackwardButton")
+        if gameRoundNumber < 10.0 {
+            displayRandomQuestion ()
+            gameRoundNumber += 1
+            gameRoundTextUpdate ()
+            print("The game round is \(gameRoundNumber)")
+        } else {
+            gameRoundNumber += 0
+            print("Game Over")
+
+            let finalScoreVC = FinalScoreViewController()
+            finalScoreVC.scoreValue = score
+            present(finalScoreVC, animated: true)
+        }
     }
-
-
-
 }
+

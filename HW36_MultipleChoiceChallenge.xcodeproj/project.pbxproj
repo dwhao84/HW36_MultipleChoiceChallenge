@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D32FDF1B2AE973F400BD3A43 /* CodableCSV in Frameworks */ = {isa = PBXBuildFile; productRef = D32FDF1A2AE973F400BD3A43 /* CodableCSV */; };
+		D331B6952AEAB9AD00192849 /* Vesica Piscis Invierno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D331B6942AEAB9AD00192849 /* Vesica Piscis Invierno.mp3 */; };
 		D3F3C0C32AE580BE009BCEFE /* FinalScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F3C0C22AE580BE009BCEFE /* FinalScoreViewController.swift */; };
 		D3F9ED592AE1775900323495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED582AE1775900323495 /* AppDelegate.swift */; };
 		D3F9ED5B2AE1775900323495 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED5A2AE1775900323495 /* SceneDelegate.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D331B6942AEAB9AD00192849 /* Vesica Piscis Invierno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vesica Piscis Invierno.mp3"; sourceTree = "<group>"; };
 		D3F3C0C22AE580BE009BCEFE /* FinalScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FinalScoreViewController.swift; path = "HW36_MultipleChoiceChallenge/View Controller/FinalScoreViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D3F9ED552AE1775900323495 /* HW36_MultipleChoiceChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW36_MultipleChoiceChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F9ED582AE1775900323495 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				D3F9ED5A2AE1775900323495 /* SceneDelegate.swift */,
 				D3F9ED5E2AE1775900323495 /* Main.storyboard */,
 				D3F9ED612AE1775B00323495 /* Assets.xcassets */,
+				D331B6942AEAB9AD00192849 /* Vesica Piscis Invierno.mp3 */,
 				D3F9ED632AE1775B00323495 /* LaunchScreen.storyboard */,
 				D3F9ED662AE1775B00323495 /* Info.plist */,
 			);
@@ -286,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D331B6952AEAB9AD00192849 /* Vesica Piscis Invierno.mp3 in Resources */,
 				D3F9ED652AE1775B00323495 /* LaunchScreen.storyboard in Resources */,
 				D3F9ED622AE1775B00323495 /* Assets.xcassets in Resources */,
 				D3F9ED602AE1775900323495 /* Main.storyboard in Resources */,

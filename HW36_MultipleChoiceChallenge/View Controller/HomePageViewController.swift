@@ -7,7 +7,6 @@
 
 import UIKit
 import AVFoundation
-import AVKit
 
 class HomePageViewController: UIViewController {
 
@@ -22,15 +21,22 @@ class HomePageViewController: UIViewController {
 
     var nameText: String?
 
+    var player: AVAudioPlayer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         updateUI()
         touchTheViewAndDismissKeyboard ()
-        enterNameTextField.delegate = self
-
-        loginStatusLabel.isHidden = true
+        playBackgroundMusic()
     }
 
+    func playBackgroundMusic () {
+        let url = Bundle.main.url(forResource: "Vesica Piscis Invierno", withExtension: "mp3")
+         player = try! AVAudioPlayer(contentsOf: url!)
+         player.play()
+         print("Music is playing")
+    }
 
     func showKeyboard () {
         enterNameTextField.becomeFirstResponder()
@@ -38,8 +44,6 @@ class HomePageViewController: UIViewController {
 
     // MARK: - Set up UI
     func updateUI () {
-
-        
         self.view.backgroundColor = UIColor.black
 
         // titleLabel
@@ -56,10 +60,11 @@ class HomePageViewController: UIViewController {
         loginStatusLabel.textColor = UIColor.systemRed
         loginStatusLabel.text = "Please enter your name"
         loginStatusLabel.numberOfLines = 1
+        loginStatusLabel.isHidden = true
         view.addSubview(loginStatusLabel)
 
         // appleImageView
-        let animatedImage = UIImage.animatedImageNamed("WWDC23_Apple_", duration: 4)
+        let animatedImage = UIImage.animatedImageNamed("Wonderlust-", duration: 4)
         appleImageView.frame = CGRect(x: 54, y: 68, width: 320, height: 320)
         appleImageView.image = animatedImage
         appleImageView.contentMode = .scaleToFill
@@ -79,18 +84,23 @@ class HomePageViewController: UIViewController {
         enterNameTextField.clipsToBounds = true
         enterNameTextField.becomeFirstResponder()
         view.addSubview(enterNameTextField)
+        importTextFieldDelegate ()
 
         showKeyboard()
 
         // arrowButton
         let configuration = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
-        let symbolImage = UIImage(systemName: "arrow.right", withConfiguration: configuration )
+        let symbolImage = UIImage(systemName: "arrow.right.circle", withConfiguration: configuration )
         arrowButton.setImage(symbolImage, for: .normal)
         arrowButton.frame = CGRect(x: 300, y: 751, width: 95, height: 95)
         arrowButton.setTitleColor(UIColor.white, for: .normal)
-        arrowButton.tintColor = UIColor.systemGreen
+        arrowButton.tintColor = UIColor.systemBlue
         arrowButton.addTarget(self, action: #selector(arrowButtonTapped), for: .touchUpInside)
         view.addSubview(arrowButton)
+    }
+
+    func importTextFieldDelegate  () {
+        enterNameTextField.delegate = self
     }
 
     // MARK: - Set up AutoLayout
@@ -107,11 +117,14 @@ class HomePageViewController: UIViewController {
 
     // MARK: - Trigger arrowButton
     @objc func arrowButtonTapped () {
+
         let multipleChoiceVC = MultipleChoiceViewController()
         guard let nameText = enterNameTextField.text, !nameText.isEmpty else { return }
         multipleChoiceVC.userNameText = enterNameTextField.text
         multipleChoiceVC.modalPresentationStyle = .fullScreen
         present(multipleChoiceVC, animated: true)
+
+        player.stop()
         print("arrowButtonTapped")
     }
 
