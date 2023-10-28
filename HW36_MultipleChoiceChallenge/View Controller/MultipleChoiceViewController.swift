@@ -37,12 +37,12 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
     // Create an instance called questionSet for MultipleChoiceData.
     let questionSet = MultipleChoiceData.data
-
-    var shuffledQuestions: [MultipleChoiceData] = []
-
-    let randomQuestion = getRandomQuestion()
-
+//    var shuffledQuestions: [MultipleChoiceData] = []
+//
+//    let randomQuestion = getRandomQuestion()
+    var index: Int = 0
     var selectedAnswerContent: String?
+    var randomCorrectAnswer: String?
 
     // Create an answerView content:
     let answerView = UIView()
@@ -57,7 +57,6 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         print("MulitpleVC")
         print(gameRoundNumber)
         print(questionSet)
-
     }
 
     // MARK: - configure UI
@@ -115,7 +114,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         answerButtonFour.addTarget(self, action: #selector(didTapAnswerButtonFour), for: .touchUpInside)
         view.addSubview(answerButtonFour)
 
-        // forwardButton 往前
+        // forwardButton 往前 ->
         let configuration = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
         let forwardImageSymbol = UIImage(systemName: "arrow.forward.circle", withConfiguration: configuration)
         forwardButton.setImage(forwardImageSymbol, for: .normal)
@@ -126,7 +125,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         forwardButton.addTarget(self, action: #selector(didTapForwardButton), for: .touchUpInside)
         view.addSubview(forwardButton)
 
-        // backwardButton 往後
+        // backwardButton 往後 <-
         let backwardConfiguration = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
         let backwardImageSymbol = UIImage(systemName: "arrow.left", withConfiguration: backwardConfiguration)
         backwardButton.setImage(backwardImageSymbol, for: .normal)
@@ -177,6 +176,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         questionStautsLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(questionStautsLabel)
 
+        // currentScoreLabel
         currentScoreLabel.frame = CGRect(x: 51, y: 168, width: 96, height: 20)
         currentScoreLabel.text = "Score: \(score) points"
         currentScoreLabel.font = UIFont.systemFont(ofSize: 16)
@@ -241,13 +241,15 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         questionContentLabel.text = "Question \(Int(gameRoundNumber))"
     }
 
-    func displayRandomQuestion () {
-        let randomQuestion = getRandomQuestion()
-        questionTitleLabel.text = randomQuestion.question
-        answerButtonOne.setTitle(randomQuestion.answerOne, for: .normal)
-        answerButtonTwo.setTitle(randomQuestion.answerTwo, for: .normal)
-        answerButtonThree.setTitle(randomQuestion.answerThree, for: .normal)
-        answerButtonFour.setTitle(randomQuestion.answerFour, for: .normal)
+    private func displayRandomQuestion () {
+        index = Int.random(in: 0...questionSet.count-1)
+        questionTitleLabel.text = questionSet[index].question
+        answerButtonOne.setTitle(questionSet[index].answerOne, for: .normal)
+        answerButtonTwo.setTitle(questionSet[index].answerTwo, for: .normal)
+        answerButtonThree.setTitle(questionSet[index].answerThree, for: .normal)
+        answerButtonFour.setTitle(questionSet[index].answerFour, for: .normal)
+
+        print("This is the index of displayRandomQestion is: \(index)")
     }
 
 
@@ -268,76 +270,117 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     // MARK: - didTapButton
     @objc func didTapAnswerButtonOne(_ sender: UIButton) {
 
+        displayRandomQuestion ()
+
+        let correctAnswer = questionSet[index].correctAnswer
+        selectedAnswerContent = sender.title(for: .normal)
+
         print("didTapAnswerButtonOne")
 
-        if let selectedAnswer = sender.title(for: .normal),
-            selectedAnswer == randomQuestion.correctAnswer {
+        print("This is the index: \(index)")
+
+        print("This is the correctAnswer: \(correctAnswer!)")
+        print("This is the selectedAnswer: \(selectedAnswerContent!)")
+
+        if selectedAnswerContent == correctAnswer {
             showCorrectAlertController()
             score += 10
             currentScoreLabel.text = "Score: \(score) points"
             print("Correct answer!")
-            print(score)
+            print("This is the currentScore: \(score)")
         } else {
             showWrongAlertController()
             print("Wrong answer!")
-            print(score)
+            print("This is the currentScore: \(score)")
         }
+        gameRoundNumber += 1
+        gameRoundTextUpdate()
     }
 
     @objc func didTapAnswerButtonTwo(_ sender: UIButton) {
 
+        displayRandomQuestion ()
+
         selectedAnswerContent = sender.title(for: .normal)
+        let correctAnswer = questionSet[index].correctAnswer
+        print("This is the index: \(index)")
+
         print("didTapAnswerButtonTwo")
 
-        if let selectedAnswer = sender.title(for: .normal),
-            selectedAnswer == randomQuestion.correctAnswer {
+        print("This is the correctAnswer: \(correctAnswer!)")
+        print("This is the selectedAnswer: \(selectedAnswerContent!)")
+
+        if selectedAnswerContent == correctAnswer {
             showCorrectAlertController()
             score += 10
             currentScoreLabel.text = "Score: \(score) points"
             print("Correct answer!")
-            print(score)
+            print("This is the currentScore: \(score)")
         } else {
             showWrongAlertController()
             print("Wrong answer!")
-            print(score)
+            print("This is the currentScore: \(score)")
         }
+        gameRoundNumber += 1
+        gameRoundTextUpdate()
     }
 
     @objc func didTapAnswerButtonThree(_ sender: UIButton) {
 
+        displayRandomQuestion ()
+
+        let correctAnswer = questionSet[index].correctAnswer
         selectedAnswerContent = sender.title(for: .normal)
+
+        print("This is the index: \(index)")
+
         print("didTapAnswerButtonThree")
 
-        if let selectedAnswer = sender.title(for: .normal),
-            selectedAnswer == randomQuestion.correctAnswer {
+        print("This is the correctAnswer: \(correctAnswer!)")
+        print("This is the selectedAnswer: \(selectedAnswerContent!)")
+
+        if selectedAnswerContent == correctAnswer {
             showCorrectAlertController()
             score += 10
             currentScoreLabel.text = "Score: \(score) points"
             print("Correct answer!")
-            print(score)
+            print("This is the currentScore: \(score)")
         } else {
             showWrongAlertController()
             print("Wrong answer!")
-            print(score)
+            print("This is the currentScore: \(score)")
         }
+        gameRoundNumber += 1
+        gameRoundTextUpdate()
     }
 
     @objc func didTapAnswerButtonFour(_ sender: UIButton) {
 
+        displayRandomQuestion ()
+
+        print("This is the index: \(index)")
+
+        let correctAnswer = questionSet[index].correctAnswer
+        selectedAnswerContent = sender.title(for: .normal)
+
         print("didTapAnswerButtonFour")
 
-        if let selectedAnswer = sender.title(for: .normal),
-            selectedAnswer == randomQuestion.correctAnswer {
+        print("This is the correctAnswer: \(correctAnswer!)")
+        print("This is the selectedAnswer: \(selectedAnswerContent!)")
+
+        if selectedAnswerContent == correctAnswer {
             showCorrectAlertController()
             score += 10
             currentScoreLabel.text = "Score: \(score) points"
             print("Correct answer!")
-            print(score)
+            print("This is the currentScore: \(score)")
         } else {
             showWrongAlertController()
             print("Wrong answer!")
-            print(score)
+            print("This is the currentScore: \(score)")
         }
+        gameRoundNumber += 1
+        gameRoundTextUpdate()
     }
 
     @objc func didTapForwardButton () {

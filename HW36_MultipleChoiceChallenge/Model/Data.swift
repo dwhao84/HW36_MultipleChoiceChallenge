@@ -41,7 +41,7 @@ extension MultipleChoiceData {
         return array
     }
 }
-
-func getRandomQuestion () -> MultipleChoiceData {
-    return MultipleChoiceData.data.shuffled().first!
-}
+//
+//func getRandomQuestion () -> MultipleChoiceData? {
+//    return MultipleChoiceData.data.shuffled().randomElement()
+//}

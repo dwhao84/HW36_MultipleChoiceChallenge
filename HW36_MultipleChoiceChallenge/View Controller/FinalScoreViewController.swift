@@ -16,6 +16,8 @@ class FinalScoreViewController: UIViewController {
 
     let playAgainButton = UIButton(type: .system)
 
+    let backgroundImage = UIImageView(image: UIImage(named: "Apple_Line-removed"))
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,18 +30,18 @@ class FinalScoreViewController: UIViewController {
 
         let cornerRadiusValue: CGFloat = 25.0
 
-        yourScoreTitleLabel.text = "Your score"
-        yourScoreTitleLabel.frame = CGRect(x: 51, y: 52, width: 326, height: 80)
-        yourScoreTitleLabel.font = UIFont.systemFont(ofSize: 30)
+        yourScoreTitleLabel.text = "Your score:"
+        yourScoreTitleLabel.frame = CGRect(x: 51, y: 100, width: 326, height: 80)
+        yourScoreTitleLabel.font = UIFont.systemFont(ofSize: 25)
         yourScoreTitleLabel.textColor = UIColor.white
         yourScoreTitleLabel.textAlignment = .left
         yourScoreTitleLabel.numberOfLines = 1
         yourScoreTitleLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(yourScoreTitleLabel)
 
-        resultScoreLabel.text = "Your Final Score is \(scoreValue)"
+        resultScoreLabel.text = "\(scoreValue)"
         resultScoreLabel.frame = CGRect(x: 51, y: 225, width: 325, height: 160)
-        resultScoreLabel.font = UIFont.systemFont(ofSize: 40)
+        resultScoreLabel.font = UIFont.boldSystemFont(ofSize: 50)
         resultScoreLabel.textColor = UIColor.white
         resultScoreLabel.textAlignment = .center
         resultScoreLabel.numberOfLines = 1
@@ -49,7 +51,6 @@ class FinalScoreViewController: UIViewController {
         playAgainButton.setTitle("Play Again", for: .normal)
         playAgainButton.tintColor = .systemBlue
         playAgainButton.frame   = CGRect(x: 139, y: 475, width: 150, height: 50)
-        playAgainButton.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1)
         playAgainButton.isHidden = false
         playAgainButton.layer.cornerRadius = cornerRadiusValue
         playAgainButton.clipsToBounds = true
@@ -57,6 +58,11 @@ class FinalScoreViewController: UIViewController {
         playAgainButton.layer.borderColor = UIColor.systemBlue.cgColor
         playAgainButton.addTarget(self, action: #selector(didTapPlayAgainButton), for: .touchUpInside)
         view.addSubview(playAgainButton)
+
+        backgroundImage.frame = CGRect(x: 0, y: 592, width: 428, height: 300)
+        backgroundImage.isHidden = false
+        backgroundImage.contentMode = .scaleToFill
+        view.addSubview(backgroundImage)
     }
 
     // After click the playAgainButton, it'll back to the MultipleChoiceViewController.

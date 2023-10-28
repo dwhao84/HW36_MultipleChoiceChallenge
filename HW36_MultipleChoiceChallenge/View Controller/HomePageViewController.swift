@@ -29,11 +29,12 @@ class HomePageViewController: UIViewController {
         updateUI()
         touchTheViewAndDismissKeyboard ()
         playBackgroundMusic()
+
     }
 
     func playBackgroundMusic () {
-        let url = Bundle.main.url(forResource: "Vesica Piscis Invierno", withExtension: "mp3")
-         player = try! AVAudioPlayer(contentsOf: url!)
+        guard let url = Bundle.main.url(forResource: "Vesica Piscis Invierno", withExtension: "mp3") else { return }
+         player = try! AVAudioPlayer(contentsOf: url)
          player.play()
          print("Music is playing")
     }
@@ -97,6 +98,16 @@ class HomePageViewController: UIViewController {
         arrowButton.tintColor = UIColor.systemBlue
         arrowButton.addTarget(self, action: #selector(arrowButtonTapped), for: .touchUpInside)
         view.addSubview(arrowButton)
+
+        // Define Auto-Layout
+        titleLabel.translatesAutoresizingMaskIntoConstraints         = false
+        loginStatusLabel.translatesAutoresizingMaskIntoConstraints   = false
+        appleImageView.translatesAutoresizingMaskIntoConstraints     = false
+        enterNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        arrowButton.translatesAutoresizingMaskIntoConstraints        = false
+
+
+
     }
 
     func importTextFieldDelegate  () {

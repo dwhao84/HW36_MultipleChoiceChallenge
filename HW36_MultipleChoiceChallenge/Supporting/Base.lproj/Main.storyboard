@@ -215,11 +215,15 @@ Apple Multiple Choice </string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Apple_Line-removed" translatesAutoresizingMaskIntoConstraints="NO" id="jKk-Vu-XAc">
+                                <rect key="frame" x="0.0" y="592" width="428" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWU-it-IGh">
-                                <rect key="frame" x="51" y="224" width="325" height="163"/>
+                                <rect key="frame" x="51" y="208" width="325" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="33"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -235,6 +239,7 @@ Apple Multiple Choice </string>
         </scene>
     </scenes>
     <resources>
+        <image name="Apple_Line-removed" width="2048" height="1365"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemGreenColor">
