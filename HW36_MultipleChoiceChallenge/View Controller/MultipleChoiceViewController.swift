@@ -41,12 +41,10 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
     var index: Int = 0
     var selectedAnswerContent: String?
 
-    var randomNumber: Int = 0
-
-    // Create an answerView content:
-    let answerView: UIView = UIView()
-    let correctAnswerImageView = UIImageView()
-    let introductionTextView = UITextView()
+//    // Create an answerView content:
+//    let answerView: UIView = UIView()
+//    let correctAnswerImageView = UIImageView()
+//    let introductionTextView = UITextView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,40 +175,40 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         displayRandomQuestion()
     }
 
-    // showAnswerView
-    func showAnswerView () {
-        let cornerRadiusValue: CGFloat = 10.0
-        let imageViewCornerRadiusValue: CGFloat = 1
-        answerView.backgroundColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 1)
-        answerView.layer.cornerRadius = cornerRadiusValue
-        answerView.clipsToBounds = true
-        view.addSubview(answerView)
-
-        print("Into the answerView")
-
-        // answerView Auto-Layout
-        answerView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            answerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            answerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            answerView.widthAnchor.constraint(equalToConstant: 300),
-            answerView.heightAnchor.constraint(equalToConstant: 600)
-        ])
-
-        // correctAnswerImageView
-        correctAnswerImageView.image = UIImage(named: "")
-        correctAnswerImageView.layer.cornerRadius = imageViewCornerRadiusValue
-        correctAnswerImageView.clipsToBounds = true
-        correctAnswerImageView.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-        answerView.addSubview(correctAnswerImageView)
-
-        // introductionTextView
-        introductionTextView.frame = CGRect(x: 100, y: 200, width: 100, height: 100)
-        introductionTextView.text = ""
-        introductionTextView.font = UIFont.systemFont(ofSize: 18)
-        introductionTextView.delegate = self
-        introductionTextView.textAlignment = .left
-    }
+//    // showAnswerView
+//    func showAnswerView () {
+//        let cornerRadiusValue: CGFloat = 10.0
+//        let imageViewCornerRadiusValue: CGFloat = 1
+//        answerView.backgroundColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 1)
+//        answerView.layer.cornerRadius = cornerRadiusValue
+//        answerView.clipsToBounds = true
+//        view.addSubview(answerView)
+//
+//        print("Into the answerView")
+//
+//        // answerView Auto-Layout
+//        answerView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            answerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            answerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            answerView.widthAnchor.constraint(equalToConstant: 300),
+//            answerView.heightAnchor.constraint(equalToConstant: 600)
+//        ])
+//
+//        // correctAnswerImageView
+//        correctAnswerImageView.image = UIImage(named: "")
+//        correctAnswerImageView.layer.cornerRadius = imageViewCornerRadiusValue
+//        correctAnswerImageView.clipsToBounds = true
+//        correctAnswerImageView.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+//        answerView.addSubview(correctAnswerImageView)
+//
+//        // introductionTextView
+//        introductionTextView.frame = CGRect(x: 100, y: 200, width: 100, height: 100)
+//        introductionTextView.text = ""
+//        introductionTextView.font = UIFont.systemFont(ofSize: 18)
+//        introductionTextView.delegate = self
+//        introductionTextView.textAlignment = .left
+//    }
 
     func showFinalScoreVC () {
         let finalScoreViewController = FinalScoreViewController()
@@ -271,6 +269,12 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
 
         print("This is the index of displayRandomQestion is: \(index)")
         buttonsIsEnable()
+    }
+
+    func presentToFinalScoreVC () {
+        let finalScoreVC = FinalScoreViewController()
+        finalScoreVC.scoreValue = score
+        present(finalScoreVC, animated: true)
     }
 
     // MARK: - Create AlertController
@@ -402,10 +406,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         } else {
             gameRoundNumber += 0
             print("Game Over")
-
-            let finalScoreVC = FinalScoreViewController()
-            finalScoreVC.scoreValue = score
-            present(finalScoreVC, animated: true)
+            presentToFinalScoreVC ()
         }
     }
 
@@ -420,10 +421,7 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         } else {
             gameRoundNumber += 0
             print("Game Over")
-
-            let finalScoreVC = FinalScoreViewController()
-            finalScoreVC.scoreValue = score
-            present(finalScoreVC, animated: true)
+            presentToFinalScoreVC ()
         }
     }
 }
