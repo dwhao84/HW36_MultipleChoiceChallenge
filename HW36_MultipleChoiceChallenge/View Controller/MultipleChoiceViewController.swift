@@ -93,6 +93,11 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
             button.layer.borderWidth = 0.6
             button.layer.borderColor = UIColor.systemBlue.cgColor
             view.addSubview(button)
+
+            button.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+
+            ])
         }
 
         // forwardButton 往前 ->
@@ -173,6 +178,8 @@ class MultipleChoiceViewController: UIViewController, UITextViewDelegate {
         view.addSubview(progressView)
 
         displayRandomQuestion()
+
+
     }
 
 //    // showAnswerView
