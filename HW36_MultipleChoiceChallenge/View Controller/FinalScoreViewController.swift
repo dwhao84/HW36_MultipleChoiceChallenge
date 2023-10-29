@@ -39,7 +39,7 @@ class FinalScoreViewController: UIViewController {
         yourScoreTitleLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(yourScoreTitleLabel)
 
-        resultScoreLabel.text = "\(scoreValue)"
+        resultScoreLabel.text = "\(scoreValue) points"
         resultScoreLabel.frame = CGRect(x: 51, y: 225, width: 325, height: 160)
         resultScoreLabel.font = UIFont.boldSystemFont(ofSize: 50)
         resultScoreLabel.textColor = UIColor.white

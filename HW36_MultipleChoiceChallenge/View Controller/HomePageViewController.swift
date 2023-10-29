@@ -107,7 +107,6 @@ class HomePageViewController: UIViewController {
         arrowButton.translatesAutoresizingMaskIntoConstraints        = false
 
 
-
     }
 
     func importTextFieldDelegate  () {
