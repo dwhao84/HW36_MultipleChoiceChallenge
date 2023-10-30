@@ -15,12 +15,6 @@ struct MultipleChoiceData: Codable {
     var answerThree: String?
     var answerFour : String?
     var correctAnswer: String?
-
-    // Computed property
-    func isAnswerCorrect(_ answer: String) -> Bool {
-        print("isAnswerCorrect")
-        return answer == correctAnswer
-    }
 }
 
 extension MultipleChoiceData {
@@ -41,7 +35,3 @@ extension MultipleChoiceData {
         return array
     }
 }
-//
-//func getRandomQuestion () -> MultipleChoiceData? {
-//    return MultipleChoiceData.data.shuffled().randomElement()
-//}

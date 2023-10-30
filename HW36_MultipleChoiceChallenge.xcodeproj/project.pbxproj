@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D32FDF1B2AE973F400BD3A43 /* CodableCSV in Frameworks */ = {isa = PBXBuildFile; productRef = D32FDF1A2AE973F400BD3A43 /* CodableCSV */; };
+		D300D3142AEFFE330030BA00 /* CodableCSV in Frameworks */ = {isa = PBXBuildFile; productRef = D300D3132AEFFE330030BA00 /* CodableCSV */; };
 		D331B6952AEAB9AD00192849 /* Vesica Piscis Invierno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D331B6942AEAB9AD00192849 /* Vesica Piscis Invierno.mp3 */; };
 		D3F3C0C32AE580BE009BCEFE /* FinalScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F3C0C22AE580BE009BCEFE /* FinalScoreViewController.swift */; };
 		D3F9ED592AE1775900323495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F9ED582AE1775900323495 /* AppDelegate.swift */; };
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D32FDF1B2AE973F400BD3A43 /* CodableCSV in Frameworks */,
+				D300D3142AEFFE330030BA00 /* CodableCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +196,7 @@
 			);
 			name = HW36_MultipleChoiceChallenge;
 			packageProductDependencies = (
-				D32FDF1A2AE973F400BD3A43 /* CodableCSV */,
+				D300D3132AEFFE330030BA00 /* CodableCSV */,
 			);
 			productName = HW36_MultipleChoiceChallenge;
 			productReference = D3F9ED552AE1775900323495 /* HW36_MultipleChoiceChallenge.app */;
@@ -271,7 +271,7 @@
 			);
 			mainGroup = D3F9ED4C2AE1775900323495;
 			packageReferences = (
-				D32FDF192AE973F400BD3A43 /* XCRemoteSwiftPackageReference "CodableCSV" */,
+				D300D3122AEFFE330030BA00 /* XCRemoteSwiftPackageReference "CodableCSV" */,
 			);
 			productRefGroup = D3F9ED562AE1775900323495 /* Products */;
 			projectDirPath = "";
@@ -666,7 +666,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D32FDF192AE973F400BD3A43 /* XCRemoteSwiftPackageReference "CodableCSV" */ = {
+		D300D3122AEFFE330030BA00 /* XCRemoteSwiftPackageReference "CodableCSV" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dehesa/CodableCSV";
 			requirement = {
@@ -677,9 +677,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D32FDF1A2AE973F400BD3A43 /* CodableCSV */ = {
+		D300D3132AEFFE330030BA00 /* CodableCSV */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D32FDF192AE973F400BD3A43 /* XCRemoteSwiftPackageReference "CodableCSV" */;
+			package = D300D3122AEFFE330030BA00 /* XCRemoteSwiftPackageReference "CodableCSV" */;
 			productName = CodableCSV;
 		};
 /* End XCSwiftPackageProductDependency section */
